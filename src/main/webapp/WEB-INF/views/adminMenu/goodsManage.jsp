@@ -33,11 +33,13 @@
             </thead>
             <c:forEach items="${list}" var="list">
                <tr>
-                  <td><c:out value="${list.shipId}"></c:out></td>
-                  <td><c:out value="${list.shipName}"></c:out></td>
-                  <td><c:out value="${list.shipStock}"></c:out></td>
+                 
+                  <td>${list.shipId}"></td>
+                  <td> <a href="/goodsRead?shipId=${list.shipId}">${list.shipName}</a></td>
+                  <td>${list.shipStock}"></td>
                   <td><fmt:formatDate value="${list.regDate}"
                         pattern="yyyy-MM-dd" /></td>
+
                </tr>
             </c:forEach>
          </table>

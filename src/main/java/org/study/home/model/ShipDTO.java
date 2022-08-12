@@ -1,6 +1,7 @@
 package org.study.home.model;
 
 import java.sql.Timestamp;
+import java.util.List;
 
 import lombok.Data;
 @Data
@@ -24,4 +25,7 @@ public class ShipDTO {
 	
 	/* 수정 날짜 */
 	private Timestamp updateDate;
+	
+	/* 이미지 정보 */
+	private List<AttachImageDTO> imageList;
 }

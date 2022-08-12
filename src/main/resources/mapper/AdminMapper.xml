@@ -3,6 +3,12 @@
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
   <mapper namespace="org.study.home.mapper.AdminMapper">
 <insert id="shipEnroll">
+
+		<selectKey resultType="int" keyProperty="shipId" order="AFTER">
+  		
+  			SELECT LAST_INSERT_ID()
+  		
+  		</selectKey>
   	
   		insert into shipTBL(shipName, shipPrice, shipStock, shipIntro)
 		values(#{shipName},#{shipPrice},#{shipStock},#{shipIntro})
@@ -34,5 +40,28 @@
         </if>
      
      </select>
+     
+     <!-- 이미지 등록 -->
+	<insert id="imageEnroll">
+	
+		
+	
+		insert into ship_image(shipId, fileName, uploadPath, uuid) values (#{shipId}, #{fileName}, #{uploadPath}, #{uuid})
+	
+	</insert>
+	
+	
+	 <select id="goodsRead" resultType="org.study.home.model.ShipDTO">
+      SELECT * FROM shipTBL WHERE shipId = #{shipId}
+   </select>
+
+
+   <update id="goodsUpdate">
+
+		UPDATE shipTBL SET shipName = #{shipName},shipPrice
+		= #{shipPrice},shipStock = #{shipStock},shipIntro =
+		#{shipIntro} WHERE shipId = #{shipId}
+	</update>
+	
 
   </mapper>
