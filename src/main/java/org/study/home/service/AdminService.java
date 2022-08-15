@@ -15,4 +15,7 @@ public interface AdminService {
 	ShipDTO goodsRead(String shipId);
 
 	void goodsUpdate(ShipDTO dto);
+	
+	/* 상품 조회 페이지 */
+	public ShipDTO goodsGetDetail(int shipId);	
 }

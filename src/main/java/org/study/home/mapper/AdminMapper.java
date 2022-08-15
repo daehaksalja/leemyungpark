@@ -17,4 +17,9 @@ public interface AdminMapper {
 
 		   public ShipDTO goodsRead(String shipId);
 		   public void goodsUpdate(ShipDTO dto);
+		   
+		   public ShipDTO goodsGetDetail(int shipId);
+		   
+		   /* 상품 수정 */
+			public int goodsModify(ShipDTO dto);
 }

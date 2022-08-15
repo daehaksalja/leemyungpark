@@ -63,5 +63,14 @@
 		#{shipIntro} WHERE shipId = #{shipId}
 	</update>
 	
+	
+	<!-- 상품 조회 페이지 -->
+	<select id="goodsGetDetail" resultType="org.study.home.model.ShipDTO">
+	
+		select shipId, shipName,shipPrice, shipStock, shipIntro, regDate, updateDate 
+		from shipTBL where shipId = #{shipId0}
+	
+	</select>
+	
 
   </mapper>

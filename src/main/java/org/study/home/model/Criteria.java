@@ -21,9 +21,9 @@ public class Criteria {
     
     /* Criteria 생성자 */
     public Criteria(int pageNum, int amount) {
-        this.pageNum = pageNum;
-        this.amount = amount;
-        this.skip = (pageNum -1) * amount;
+        this.setPageNum(pageNum);
+        this.setAmount(amount);
+        this.setSkip((pageNum -1) * amount);
     }
     
     /* Criteria 기본 생성자 */
@@ -35,4 +35,36 @@ public class Criteria {
     public String[] getTypeArr() {
         return type == null? new String[] {}:type.split("");
     }
+
+	public int getPageNum() {
+		return pageNum;
+	}
+
+	public void setPageNum(int pageNum) {
+		this.pageNum = pageNum;
+	}
+
+	public int getAmount() {
+		return amount;
+	}
+
+	public void setAmount(int amount) {
+		this.amount = amount;
+	}
+
+	public int getSkip() {
+		return skip;
+	}
+
+	public void setSkip(int skip) {
+		this.skip = skip;
+	}
+
+	public String getKeyword() {
+		return keyword;
+	}
+
+	public void setKeyword(String keyword) {
+		this.keyword = keyword;
+	}
 }

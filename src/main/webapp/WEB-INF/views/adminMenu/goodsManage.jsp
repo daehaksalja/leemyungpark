@@ -34,9 +34,10 @@
             <c:forEach items="${list}" var="list">
                <tr>
                  
-                  <td>${list.shipId}"></td>
-                  <td> <a href="/goodsRead?shipId=${list.shipId}">${list.shipName}</a></td>
-                  <td>${list.shipStock}"></td>
+                  <td>${list.shipId}</td>
+
+                 <td> <a class="move" href='<c:out value="${list.shipId}"/>'><c:out value="${list.shipName}"></c:out></a></td>
+                  <td>${list.shipStock}</td>
                   <td><fmt:formatDate value="${list.regDate}"
                         pattern="yyyy-MM-dd" /></td>
 
@@ -149,6 +150,19 @@
          
          moveForm.submit();
          
+      });
+      
+      
+      /* 상품 조회 페이지 */
+      $(".move").on("click", function(e){
+      	
+      	e.preventDefault();
+      	
+      	moveForm.append("<input type='hidden' name='shipId' value='"+$(this).attr("href") + "'>");
+      	moveForm.attr("action", "/admin/goodsDetail");
+      	moveForm.submit();
+      	
+      	
       });
       
       

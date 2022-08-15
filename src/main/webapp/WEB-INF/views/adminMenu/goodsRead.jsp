@@ -31,11 +31,20 @@ body {
 	padding: 0px, 0px, 0px, 0px;
 	margin: 0px, 0px, 0px, 0px;
 	overflow: hidden;
-	background-color: #000;
+	background-color: white;
 }
 .container {
 	
 }
+
+#result_card img{
+		max-width: 100%;
+	    height: auto;
+	    display: block;
+	    padding: 5px;
+	    margin-top: 10px;
+	    margin: auto;	
+	}
 </style>
 <body>
  	<video id="videobcg" preload="auto" autoplay="true" loop="loop"
@@ -101,12 +110,51 @@ body {
 
     	</h2>
   </div>  
+  
+  
+		<div class="form_section">
+               <div class="form_section_title">
+            	<label>상품 이미지</label>
+              </div>
+             <div class="form_section_content">
 
+				<div id="uploadReslut">
+																		
+				</div>
+            </div>
+          </div>
+                    		
 
 			<div class="neon_effect">
 				<div class="exitBtnBox">
 					<a href="/goodsUpdate?shipId=${dto.shipId}" class="homeATag">수정하기</a>
 				</div>
    </div> 
+   <script type="text/javascript">
+   $(document).ready(function() {
+	   /* 이미지 정보 호출 */
+		let shipId = ${goodsInfo.shipId};
+		let uploadReslut = $("#uploadReslut");			
+		
+		$.getJSON("/getAttachList", {shipId : shipId}, function(arr){	
+			if(arr.length === 0){			
+				return;
+			}	
+			let str = "";
+			let obj = arr[0];	
+			
+			let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+			str += "<div id='result_card'";
+			str += "data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'";
+			str += ">";
+			str += "<img src='/display?fileName=" + fileCallPath +"'>";
+			str += "</div>";		
+			
+			uploadReslut.html(str);						
+			
+		});
+   }
+   </script>
+   
 </body>
 </html> 

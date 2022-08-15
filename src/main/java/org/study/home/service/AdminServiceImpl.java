@@ -62,4 +62,15 @@ public class AdminServiceImpl implements AdminService{
 	      System.out.println("goodsGetTotal()........." + cri);
 	      return adminMapper.goodsGetTotal(cri);
 	   }
+	   
+	   
+	   
+	   /* 상품 조회 페이지 */
+		@Override
+		public ShipDTO goodsGetDetail(int shipId) {
+			
+			System.out.println("(service)bookGetDetail......." + shipId);
+			
+			return adminMapper.goodsGetDetail(shipId);
+		}	
 }

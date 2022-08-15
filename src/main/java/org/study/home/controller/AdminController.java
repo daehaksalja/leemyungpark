@@ -1,6 +1,6 @@
 package org.study.home.controller;
 
-import java.awt.Graphics2D;
+
 import java.awt.image.BufferedImage;
 import java.io.File;
 import java.io.IOException;
@@ -163,7 +163,7 @@ public class AdminController {
 				return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
 			}
 		}
-		String uploadFolder = "/home/lwk/image";
+		String uploadFolder = "C:\\upload\\";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		String str = sdf.format(date);
@@ -177,7 +177,7 @@ public class AdminController {
 		}
 
 		/* 이미저 정보 담는 객체 */
-		List<AttachImageDTO> list = new ArrayList();
+		List<AttachImageDTO> list = new ArrayList<AttachImageDTO>();
 		// 향상된 for
 		for (MultipartFile multipartFile : uploadFile) {
 
@@ -227,7 +227,7 @@ public class AdminController {
 	public ResponseEntity<byte[]> getImage(String fileName) {
 		logger.info("getImage()......." + fileName);
 
-		File file = new File("/home/lwk/image/" + fileName);
+		File file = new File("C:\\upload\\" + fileName);
 		ResponseEntity<byte[]> result = null;
 
 		try {
@@ -276,15 +276,30 @@ public class AdminController {
 		return new ResponseEntity<String>("success", HttpStatus.OK);
 	}
 
-	/*
-	 * 이미지 정보 반환
-	 * 
-	 * @GetMapping(value="/getAttachList") public
-	 * ResponseEntity<List<AttachImageDTO>> getAttachList(int shipId){
-	 * logger.info("getAttachList.........." + shipId);
-	 * 
-	 * return new ResponseEntity(attachMapper.getAttachList(shipId), HttpStatus.OK);
-	 * }
-	 */
+	/* 이미지 정보 반환 */
+	@SuppressWarnings("deprecation")
+	@GetMapping(value="/getAttachList", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
+	public ResponseEntity<List<AttachImageDTO>> getAttachList(int shipId){
+		
+		logger.info("getAttachList.........." + shipId);
+		
+		return new ResponseEntity<List<AttachImageDTO>>(attachMapper.getAttachList(shipId), HttpStatus.OK);
+		
+	}
+	
+	
+	/* 상품 조회 페이지 */
+	@GetMapping({"/admin/goodsDetail","/goodsModify"})
+	public void goodsGetInfoGET(int shipId, Criteria cri, Model model) {
+		
+		logger.info("goodsGetInfo()........." + shipId);
+		
+		/* 목록 페이지 조건 정보 */
+		model.addAttribute("cri", cri);
+		
+		/* 조회 페이지 정보 */
+		model.addAttribute("goodsInfo", adminService.goodsGetDetail(shipId));
+
+	}
 
 }
