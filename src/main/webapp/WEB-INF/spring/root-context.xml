@@ -32,8 +32,9 @@
 		
 		
 	<mybatis-spring:scan base-package="org.study.home.mapper"/>
-   
+
    <context:component-scan base-package="org.study.home.service"></context:component-scan>
+   <context:component-scan base-package="org.study.home.model"></context:component-scan>
 		
 		<bean id="bcryptPasswordEncoder" class="org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder">
    </bean>
@@ -58,10 +59,6 @@
 </bean>
 
 
-<!-- <bean id="transactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
-		<property name="dataSource" ref="datasource"></property>
-	</bean>
-	
-	<tx:annotation-driven /> -->
 
+	
 </beans>

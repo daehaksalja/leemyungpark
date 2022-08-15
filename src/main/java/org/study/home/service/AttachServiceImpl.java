@@ -19,7 +19,7 @@ public class AttachServiceImpl implements AttachService{
 	/* 이미지 데이터 반환 */
 	@Override
 	public List<AttachImageDTO> getAttachList(int shipId) {
-
+		System.out.println("getAttachList.........");
 		return attachMapper.getAttachList(shipId);
 	}
 }

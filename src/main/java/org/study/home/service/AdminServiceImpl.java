@@ -16,7 +16,7 @@ public class AdminServiceImpl implements AdminService{
 	@Autowired
 	private AdminMapper adminMapper;
 	/* 상품 등록 */
-
+	@Transactional
 	@Override
 	public void shipEnroll(ShipDTO ship) {
 		System.out.println("shipEnroll");
