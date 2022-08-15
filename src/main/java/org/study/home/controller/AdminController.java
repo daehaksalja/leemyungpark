@@ -289,7 +289,7 @@ public class AdminController {
 	
 	
 	/* 상품 조회 페이지 */
-	@GetMapping({"/admin/goodsDetail","/goodsModify"})
+	@GetMapping({"/admin/goodsDetail","/admin/goodsModify"})
 	public void goodsGetInfoGET(int shipId, Criteria cri, Model model) {
 		
 		logger.info("goodsGetInfo()........." + shipId);
@@ -300,6 +300,21 @@ public class AdminController {
 		/* 조회 페이지 정보 */
 		model.addAttribute("goodsInfo", adminService.goodsGetDetail(shipId));
 
+	}
+	
+	
+	/* 상품 정보 수정 */
+	@PostMapping("/admin/goodsModify")
+	public String goodsModifyPOST(ShipDTO dto, RedirectAttributes rttr) {
+		
+		logger.info("goodsModifyPOST.........." + dto);
+		
+		int result = adminService.goodsModify(dto);
+		
+		rttr.addFlashAttribute("modify_result", result);
+		
+		return "redirect:/adminMenu/goodsManage";		
+		
 	}
 
 }

@@ -71,6 +71,14 @@
 		from shipTBL where shipId = #{shipId0}
 	
 	</select>
+	<update id="goodsModify">
+		
+		update shipTBL set shipName = #{shipName},	shipPrice = #{shipPrice}, shipStock = #{shipStock}, 
+		shipIntro = #{shipIntro},updateDate = now()
+		where shipId = ${shipId}
+		
+	</update>
+	
 	
 
   </mapper>

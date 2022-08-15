@@ -18,4 +18,7 @@ public interface AdminService {
 	
 	/* 상품 조회 페이지 */
 	public ShipDTO goodsGetDetail(int shipId);	
+	
+	/* 상품 수정 */
+	public int goodsModify(ShipDTO dto);	
 }

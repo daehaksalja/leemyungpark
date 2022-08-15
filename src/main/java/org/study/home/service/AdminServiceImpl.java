@@ -73,4 +73,14 @@ public class AdminServiceImpl implements AdminService{
 			
 			return adminMapper.goodsGetDetail(shipId);
 		}	
+		
+		/* 상품 정보 수정 */
+		@Override
+		public int goodsModify(ShipDTO dto) {
+			
+			System.out.println("goodsModify........");
+			
+			return adminMapper.goodsModify(dto);
+			
+		}
 }

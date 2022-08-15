@@ -1,0 +1,25 @@
+.admin_content_wrap{
+	display: flex;
+	justify-content: center;
+	margin-left:-50px;
+	margin-top: 200px;
+	
+}
+
+.menuText{
+	color:#03e9f4;
+	
+	display: flex;
+	justify-content: center;
+}
+.btn_section{
+	display: flex;
+	justify-content: center;
+}
+.inputTag{
+	color: white;
+	text-align:center;
+text-decoration: none;
+    background-color: transparent;
+    border-color: transparent;
+}
