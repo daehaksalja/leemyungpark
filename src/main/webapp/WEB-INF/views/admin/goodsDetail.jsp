@@ -59,7 +59,7 @@ body {
                     				<label class="menuText">ship 제목</label>
                     			</div>
                     			<div class="form_section_content">
-                    				<input name="shipName" value="<c:out value="${goodsInfo.shipName}"/>" disabled>
+                    				<input class="inputTag" name="shipName" value="<c:out value="${goodsInfo.shipName}"/>" disabled>
                     			</div>
                    			 </div>
                     		                		                    		

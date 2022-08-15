@@ -163,7 +163,7 @@ public class AdminController {
 				return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
 			}
 		}
-		String uploadFolder = "C:\\upload\\";
+		String uploadFolder = "C:\\upload";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		String str = sdf.format(date);
@@ -314,6 +314,20 @@ public class AdminController {
 		rttr.addFlashAttribute("modify_result", result);
 		
 		return "redirect:/adminMenu/goodsManage";		
+		
+	}
+	
+	/* 상품 정보 삭제 */
+	@PostMapping("/goodsDelete")
+	public String goodsDeletePOST(int shipId, RedirectAttributes rttr) {
+		
+		logger.info("goodsDeletePOST..........");
+		
+		int result = adminService.goodsDelete(shipId);
+		
+		rttr.addFlashAttribute("delete_result", result);
+		
+		return "redirect:/adminMenu/goodsManage";
 		
 	}
 

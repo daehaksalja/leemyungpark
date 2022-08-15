@@ -28,6 +28,16 @@ public class ShipDTO {
 	
 	/* 이미지 정보 */
 	private List<AttachImageDTO> imageList;
+	
+	private AttachImageDTO imageDTO;
+	/* 경로 */
+	private String uploadPath;
+	
+	/* uuid */
+	private String uuid;
+	
+	/* 파일 이름 */
+	private String fileName;
 
 	public int getShipId() {
 		return shipId;
@@ -92,4 +102,46 @@ public class ShipDTO {
 	public void setImageList(List<AttachImageDTO> imageList) {
 		this.imageList = imageList;
 	}
+
+	public AttachImageDTO getImageDTO() {
+		return imageDTO;
+	}
+
+	public void setImageDTO(AttachImageDTO imageDTO) {
+		this.imageDTO = imageDTO;
+	}
+
+	public String getUploadPath() {
+		return uploadPath;
+	}
+
+	public void setUploadPath(String uploadPath) {
+		this.uploadPath = uploadPath;
+	}
+
+	public String getUuid() {
+		return uuid;
+	}
+
+	public void setUuid(String uuid) {
+		this.uuid = uuid;
+	}
+
+	public String getFileName() {
+		return fileName;
+	}
+
+	public void setFileName(String fileName) {
+		this.fileName = fileName;
+	}
+
+	@Override
+	public String toString() {
+		return "ShipDTO [shipId=" + shipId + ", shipName=" + shipName + ", shipPrice=" + shipPrice + ", shipStock="
+				+ shipStock + ", shipIntro=" + shipIntro + ", regDate=" + regDate + ", updateDate=" + updateDate
+				+ ", imageList=" + imageList + ", imageDTO=" + imageDTO + ", uploadPath=" + uploadPath + ", uuid="
+				+ uuid + ", fileName=" + fileName + "]";
+	}
+
+	
 }

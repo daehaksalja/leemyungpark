@@ -342,7 +342,7 @@ function showUploadImage(uploadResultArr){
 	 let obj = uploadResultArr[0];
 	 let str = "";
 	 let fileCallPath = obj.uploadPath.replace(/\\/g, '/') + "/s_" + obj.uuid + "_" + obj.fileName;
-	 str += "<div id='result_card'>";
+	 	str += "<div id='result_card'>";
 		str += "<img src='/display?fileName=" + fileCallPath +"'>";
 		str += "<div class='imgDeleteBtn' data-file='" + fileCallPath + "'>x</div>";
 		str += "<input type='hidden' name='imageList[0].fileName' value='"+ obj.fileName +"'>";

@@ -78,7 +78,12 @@
 		where shipId = ${shipId}
 		
 	</update>
+	<!-- 상품 정보 삭제 -->
+	<delete id="goodsDelete">
 	
+		delete from shipTBL where shipId = #{shipId}
+	
+	</delete>
 	
 
   </mapper>
