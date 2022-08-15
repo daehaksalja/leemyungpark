@@ -1,10 +1,15 @@
 .admin_content_wrap{
 	display: flex;
 	justify-content: center;
-	margin-left:-50px;
-	margin-top: 200px;
 	
 }
+
+
+.container{
+	margin-left:20%;
+	margin-top: 300px; 
+	}
+
 
 .menuText{
 	color:#03e9f4;
@@ -12,6 +17,7 @@
 	display: flex;
 	justify-content: center;
 }
+
 .btn_section{
 	display: flex;
 	justify-content: center;
@@ -20,6 +26,48 @@
 	color: white;
 	text-align:center;
 text-decoration: none;
-    background-color: transparent;
-    border-color: transparent;
+    /* background-color: transparent;
+    border-color: transparent; */
 }
+
+.imgCont{
+	position:absolute;
+	margin-left:-400px;
+	margin-top: 200px; 
+}
+
+.form_section{
+	display:flex;
+	margin-left: 20%;
+}
+
+textarea {
+	max-height: 200px;
+	max-width: 400px;
+	position: absolute;
+}
+.admin_content_main{
+	margin-left: 200px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
