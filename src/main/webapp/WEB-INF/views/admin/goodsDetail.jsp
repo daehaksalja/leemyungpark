@@ -35,20 +35,20 @@ body {
 	padding: 0px, 0px, 0px, 0px;
 	margin: 0px, 0px, 0px, 0px;
 	overflow: hidden;
-	background-color: #000;
+	background-color: black;
 }
 </style>
 
 <link rel="stylesheet" href="../../../resources/css/goodsDetail.css">
 <body>
-
-
 <video id="videobcg" preload="auto" autoplay="true" loop="loop"
-	muted="muted">
+   muted="muted">
 
-	<source src="../../../resources/css/spaceGalaxy.mp4" type="video/mp4">
+   <source src="../../../resources/css/spaceGalaxy.mp4" type="video/mp4">
 
 </video>
+
+
 				<div class="admin_content_wrap">
                     <div class="admin_content_subject"><span>상품 상세</span></div>
 
@@ -107,6 +107,17 @@ body {
                     			</div>
                     		</div>    		
                     		
+                    		<div class="form_section">
+                    			<div class="form_section_title">
+                    				<label>상품 이미지</label>
+                    			</div>
+                    			<div class="form_section_content">
+
+									<div id="uploadReslut">
+																		
+									</div>
+                    			</div>
+                    		</div>
                    		
                    			<div class="btn_section">
                    				 <button id="cancelBtn" class="btn">상품 목록</button>
@@ -125,6 +136,36 @@ body {
                 
                 
                 <script type="text/javascript">
+                
+                $(document).ready(function(){
+                	/* 이미지 정보 호출 */
+        			let shipId = '<c:out value="${goodsInfo.shipId}"/>';
+        			let uploadReslut = $("#uploadReslut");			
+        			
+        			$.getJSON("/getAttachList", {shipId : shipId}, function(arr){	
+        				if(arr.length === 0){		
+        					let str = "";
+        					str += "<div id='result_card'>";
+        					str += "<img src='/resources/image/goodsNoImage.png'>";
+        					str += "</div>";
+        					
+        					uploadReslut.html(str);	
+        					return;
+        				}
+        				let str = "";
+        				let obj = arr[0];	
+        				
+        				let fileCallPath = encodeURIComponent(obj.uploadPath + "/s_" + obj.uuid + "_" + obj.fileName);
+        				str += "<div id='result_card'";
+        				str += "data-path='" + obj.uploadPath + "' data-uuid='" + obj.uuid + "' data-filename='" + obj.fileName + "'";
+        				str += ">";
+        				str += "<img src='/display?fileName=" + fileCallPath +"'>";
+        				str += "</div>";		
+        				
+        				uploadReslut.html(str);						
+        				
+        			});
+                });
                 
                 /* 목록 이동 버튼 */
             	$("#cancelBtn").on("click", function(e){

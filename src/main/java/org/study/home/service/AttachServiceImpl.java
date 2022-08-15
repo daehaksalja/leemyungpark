@@ -7,10 +7,8 @@ import org.springframework.stereotype.Service;
 import org.study.home.mapper.AttachMapper;
 import org.study.home.model.AttachImageDTO;
 
-import lombok.extern.log4j.Log4j;
 
 @Service
-
 public class AttachServiceImpl implements AttachService{
 	@Autowired
 	private AttachMapper attachMapper;
