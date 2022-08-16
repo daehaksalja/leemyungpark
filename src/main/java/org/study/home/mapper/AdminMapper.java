@@ -25,4 +25,7 @@ public interface AdminMapper {
 			
 			/* 상품 정보 삭제 */
 			public int goodsDelete(int shipId);
+			
+			/* 지정 상품 이미지 전체 삭제 */
+			public void deleteImageAll(int shipId);
 }

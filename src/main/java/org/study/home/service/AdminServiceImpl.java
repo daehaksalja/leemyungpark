@@ -75,12 +75,26 @@ public class AdminServiceImpl implements AdminService{
 		}	
 		
 		/* 상품 정보 수정 */
+		@Transactional
 		@Override
 		public int goodsModify(ShipDTO dto) {
 			
-			System.out.println("goodsModify........");
+			int result = adminMapper.goodsModify(dto);
 			
-			return adminMapper.goodsModify(dto);
+			if(result == 1 && dto.getImageList() != null && dto.getImageList().size() > 0) {
+				
+				adminMapper.deleteImageAll(dto.getShipId());
+				
+				dto.getImageList().forEach(attach -> {
+					
+					attach.setShipId(dto.getShipId());
+					adminMapper.imageEnroll(attach);
+					
+				});
+				
+			}
+			
+			return result;
 			
 		}
 		

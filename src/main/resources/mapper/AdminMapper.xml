@@ -44,8 +44,6 @@
      <!-- 이미지 등록 -->
 	<insert id="imageEnroll">
 	
-		
-	
 		insert into ship_image(shipId, fileName, uploadPath, uuid) values (#{shipId}, #{fileName}, #{uploadPath}, #{uuid})
 	
 	</insert>
@@ -84,6 +82,11 @@
 		delete from shipTBL where shipId = #{shipId}
 	
 	</delete>
+	<!-- 지정 상품 이미지 전체 삭제 --> 
+	<delete id="deleteImageAll">
 	
+		delete FROM ship_image where shipId = #{shipId}
+	
+	</delete>
 
   </mapper>

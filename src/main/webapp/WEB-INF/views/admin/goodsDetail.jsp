@@ -18,6 +18,14 @@
 	z-index: -1000;
 	overflow: hidden;
 }
+#result_card img{
+		max-width: 400px;
+	    height: auto;
+	    display: block;
+	    padding: 5px;
+	    margin-top: 10px;
+	    margin: auto;	
+	}
 </style>
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.4.1.js"
@@ -58,9 +66,9 @@ body {
 
 		<div class="container">
 
-			<div class="admin_content_main">
+					<div class="admin_content_main">
 
-				<div class="inputText">
+				<div class="inputText1">
 					<label class="menuText">ship 제목</label>
 				</div>
 				<div class="inputbox">
@@ -69,7 +77,7 @@ body {
 				</div>
 
 
-				<div class="inputText">
+				<div class="inputText2">
 					<label class="menuText">ship 가격</label>
 				</div>
 				<div class="inputbox">
@@ -79,7 +87,7 @@ body {
 
 
 
-				<div class="inputText">
+				<div class="inputText3">
 					<label class="menuText">ship 재고</label>
 				</div>
 				<div class="inputbox">
@@ -88,18 +96,11 @@ body {
 				</div>
 
 
-				<div class="inputText">
-
-					<label class="menuText">ship 소개</label>
-				</div>
-				<div class="areaBox">
-					<textarea class="inputTagLarge" name="shipIntro"
-						id="shipIntro_textarea" disabled>${goodsInfo.shipIntro}</textarea>
-				</div>
 
 
 
-				<div class="inputText">
+
+				<div class="inputText5">
 					<label class="menuText">등록 날짜</label>
 				</div>
 				<div class="inputbox">
@@ -110,7 +111,7 @@ body {
 
 
 
-				<div class="inputText">
+				<div class="inputText6">
 					<label class="menuText">최근 수정 날짜</label>
 				</div>
 				<div class="inputbox">
@@ -119,15 +120,47 @@ body {
 						disabled>
 				</div>
 
+
+				<div class="inputText4">
+
+					<label class="menuText">ship 소개</label>
+				</div>
+				<div class="areaBox">
+					<textarea class="inputTagLarge" name="shipIntro"
+						id="shipIntro_textarea" disabled>${goodsInfo.shipIntro}</textarea>
+				</div>
+
 			</div>
 
 
 
 
-			<div class="btn_section">
+
+			<div class="btn_box">
 				<button id="cancelBtn" class="btn">상품 목록</button>
 				<button id="modifyBtn" class="btn enroll_btn">수정</button>
 			</div>
+			
+			
+			<!-- <div class="neon_effect">
+				<button id="cancelBtn" class="mainBtn1">
+					<div class="back">
+						<a href="/adminMenu/goodsManage" class="btn btn--1"><p
+								class="btnText">상품 목록</p></a>
+					</div>
+				</button>
+			</div>
+			<div class="neon_effect">
+				<button id="cancelBtn" class="mainBtn2">
+					<div class="back">
+						<a href="/adminMenu/goodsManage" class="btn btn--1"><p
+								class="btnText">수정</p></a>
+					</div>
+				</button>
+			</div> -->
+			
+			
+			
 		</div>
 
 		<div class="imgCont">
@@ -151,9 +184,7 @@ body {
 
 
 	<script type="text/javascript">
-		$(document)
-				.ready(
-						function() {
+		$(document).ready(function() {
 							/* 이미지 정보 호출 */
 							let shipId = '<c:out value="${goodsInfo.shipId}"/>';
 							let uploadReslut = $("#uploadReslut");
