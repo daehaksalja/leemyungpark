@@ -28,4 +28,7 @@ public interface AdminMapper {
 			
 			/* 지정 상품 이미지 전체 삭제 */
 			public void deleteImageAll(int shipId);
+			
+			/* 지정 상품 이미지 정보 얻기 */
+			public List<AttachImageDTO> getAttachInfo(int shipId);	
 }

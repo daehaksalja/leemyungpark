@@ -88,5 +88,10 @@
 		delete FROM ship_image where shipId = #{shipId}
 	
 	</delete>
-
+<!-- 지정 상품 이미지 정보 얻기 -->
+	<select id="getAttachInfo" resultType="org.study.home.model.AttachImageDTO">
+	
+		select * from ship_image where shipId = #{shipId}
+	
+	</select>
   </mapper>

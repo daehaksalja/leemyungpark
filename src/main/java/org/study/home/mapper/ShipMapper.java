@@ -11,4 +11,7 @@ public interface ShipMapper {
 	
 	/* 상품 총 갯수 */
 	public int goodsGetTotal(Criteria cri);
+	
+	/* 상품 정보 */
+	public ShipDTO getGoodsInfo(int shipId);
 }

@@ -6,6 +6,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.study.home.mapper.AdminMapper;
+import org.study.home.model.AttachImageDTO;
 import org.study.home.model.Criteria;
 import org.study.home.model.ShipDTO;
 
@@ -99,10 +100,21 @@ public class AdminServiceImpl implements AdminService{
 		
 		/* 상품 정보 삭제 */
 		@Override
+		@Transactional
 		public int goodsDelete(int shipId) {
 
 			System.out.println("goodsDelete..........");
-			
+			adminMapper.deleteImageAll(shipId);
+
 			return adminMapper.goodsDelete(shipId);
 		}	
+		
+		/* 지정 상품 이미지 정보 얻기 */
+		@Override
+		public List<AttachImageDTO> getAttachInfo(int shipId) {
+			
+			System.out.println("getAttachInfo........");
+			
+			return adminMapper.getAttachInfo(shipId);
+		}
 }

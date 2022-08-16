@@ -6,6 +6,8 @@ import java.io.File;
 import java.io.IOException;
 import java.net.URLDecoder;
 import java.nio.file.Files;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
@@ -25,6 +27,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.util.FileCopyUtils;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -327,6 +330,9 @@ public class AdminController {
 	public String goodsDeletePOST(int shipId, RedirectAttributes rttr) {
 		
 		logger.info("goodsDeletePOST..........");
+		List<AttachImageDTO> fileList = adminService.getAttachInfo(shipId);
+		
+		
 		
 		int result = adminService.goodsDelete(shipId);
 		
@@ -370,6 +376,16 @@ public class AdminController {
 	public void setMapper(MemberMapper mapper) {
 		this.mapper = mapper;
 	}
+	
+	/* 상품 상세 */
+	@GetMapping("/goodsDetail/{shipId}")
+	public String goodsDetailGET(@PathVariable("shipId")int shipId, Model model) {
+		
+		logger.info("goodsDetailGET()..........");
+		model.addAttribute("goodsInfo", shipService.getGoodsInfo(shipId));
+		return "/goodsDetail";
+	}
+	
 	
 	
 

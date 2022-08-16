@@ -32,6 +32,7 @@
 <script src="https://code.jquery.com/jquery-3.4.1.js"
 	integrity="sha256-WpOohJOqMqqyKL9FccASB9O0KwACQJpFTUBLTYOVvVU="
 	crossorigin="anonymous"></script>
+	<link rel="stylesheet" href="../../../resources/css/goodsDetail.css">
 </head>
 
  <style>
@@ -48,7 +49,7 @@ body {
 }
 </style> 
 
-<link rel="stylesheet" href="../../../resources/css/goodsDetail.css">
+
 <body>
 	<video id="videobcg" preload="auto" autoplay="true" loop="loop"
 		muted="muted">

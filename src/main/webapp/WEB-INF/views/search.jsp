@@ -33,8 +33,8 @@
 	.title{
 	    font-size: 20px;
 	    color: #3a60df;
-	    font-weight: 700;
 
+		margin-left: 100px
 }
 	.price{
 		text-align: center;
@@ -72,6 +72,18 @@
 	.next a, .prev a {
 	    color: #ccc;
 	}
+	
+	
+	/* 상품 이미지 관련 */
+		.image_wrap {
+		    width: 130%;
+		    height: 130%;
+		}	
+		.image_wrap img {
+		    max-width: 130%;
+		    height: auto;
+		    display: block;
+		}
 </style>
 </head>
 <body>
@@ -107,11 +119,16 @@
 						<tbody id="searchList>">
 							<c:forEach items="${list}" var="list">
 								<tr>
-									<td class="image"></td>
+									<td class="image">
+									<div class="image_wrap" data-shipid="${list.imageList[0].shipId}" data-path="${list.imageList[0].uploadPath}" data-uuid="${list.imageList[0].uuid}" data-filename="${list.imageList[0].fileName}">
+										<img>
+									</div>
+									</td>
 									<td class="detail">
 										
 										<div class="title">
-											${list.shipName}
+										<a href="/goodsDetail/${list.shipId}">
+											${list.shipName}</a>
 										</div>
 							
 									</td>
@@ -123,7 +140,7 @@
 									<td class="price">
 										<div class="org_price">
 											
-												${list.shipPrice}
+												${list.shipPrice} $
 											
 										</div>
 									</td>
@@ -180,7 +197,37 @@
 </div>
 
 <script type="text/javascript">
-
+$(document).ready(function(){
+	
+	// 검색 타입 selected
+	const selectedType = '<c:out value="${pageMaker.cri.type}"/>';
+	if(selectedType != ""){
+		$("select[name='type']").val(selectedType).attr("selected", "selected");	
+	}
+	
+	/* 이미지 삽입 */
+	$(".image_wrap").each(function(i, obj){
+		
+		const bobj = $(obj);
+		
+		if(bobj.data("shipid")){
+			const uploadPath = bobj.data("path");
+			const uuid = bobj.data("uuid");
+			const fileName = bobj.data("filename");
+			
+			const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+			
+			$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+			
+		} else {
+			
+			$(this).find("img").attr('src', '/resources/image/goodsNoImage.png');
+			
+		}
+		
+	});		
+	
+});
 /* 페이지 이동 버튼 */
 const moveForm = $('#moveForm');
 
