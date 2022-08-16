@@ -40,6 +40,7 @@ import org.study.home.model.PageDTO;
 import org.study.home.model.ShipDTO;
 import org.study.home.service.AdminService;
 import org.study.home.service.MemberService;
+import org.study.home.service.ShipService;
 
 import net.coobird.thumbnailator.Thumbnails;
 
@@ -57,6 +58,9 @@ public class AdminController {
 
 	@Autowired
 	private AttachMapper attachMapper;
+	
+	@Autowired
+	private ShipService shipService;
 
 	@GetMapping("/adminMenu/adminMember")
 	public String adminMember(Model model) {
@@ -163,7 +167,7 @@ public class AdminController {
 				return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
 			}
 		}
-		String uploadFolder = "/home/lwi/image/";
+		String uploadFolder = "/home/lwk/image/";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		String str = sdf.format(date);
@@ -227,7 +231,7 @@ public class AdminController {
 	public ResponseEntity<byte[]> getImage(String fileName) {
 		logger.info("getImage()......." + fileName);
 
-		File file = new File("/home/lwi/image/" + fileName);
+		File file = new File("/home/lwk/image/" + fileName);
 		ResponseEntity<byte[]> result = null;
 
 		try {
@@ -253,7 +257,7 @@ public class AdminController {
 		File file = null;
 		try {
 			/* 썸네일 파일 삭제 */
-			file = new File("/home/lwi/image/" + URLDecoder.decode(fileName, "UTF-8"));
+			file = new File("/home/lwk/image/" + URLDecoder.decode(fileName, "UTF-8"));
 
 			file.delete();
 
@@ -330,6 +334,30 @@ public class AdminController {
 		return "redirect:/adminMenu/goodsManage";
 		
 	}
+	/* 상품 검색 */
+	@GetMapping("/search")
+	public String searchGoodsGET(Criteria cri, Model model) {
+		
+		logger.info("cri : " + cri);
+		
+		List<ShipDTO> list = shipService.getGoodsList(cri);
+		logger.info("pre list : " + list);
+		if(!list.isEmpty()) {
+			model.addAttribute("list", list);
+			logger.info("list : " + list);
+		} else {
+			model.addAttribute("listcheck", "empty");
+			
+			return "/search";
+		}
+		
+		model.addAttribute("pageMaker", new PageDTO(cri, shipService.goodsGetTotal(cri)));
+		
+		
+		return "/search";
+		
+	}
+	
 	
 
 }

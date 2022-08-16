@@ -7,7 +7,7 @@
 <meta charset="UTF-8">
 
 <title>Insert title here</title>
-<link rel="stylesheet" href="../../resources/css/make.css">
+<link rel="stylesheet" href="/resources/css/make.css">
 </head>
 
 <body>
@@ -52,6 +52,17 @@
 					class="frame-btn__line frame-btn__line--flat"></span>
 			</span> <span class="frame-btn__solid"></span> <span class="frame-btn__text">로그아웃</span>
 			</a>
+				</div>
+				
+				<div class="search_area">
+					<div class="search_wrap">
+                		<form id="searchForm" action="/search" method="get">
+                			<div class="search_input">
+                				<input type="text" name="keyword">
+                    			<button class='btn search_btn'>검 색</button>                				
+                			</div>
+                		</form>
+                	</div>
 				</div>
 				  </c:if>
 
