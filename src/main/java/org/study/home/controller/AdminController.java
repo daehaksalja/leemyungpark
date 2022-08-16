@@ -147,6 +147,7 @@ public class AdminController {
 	}
 
 	/* 첨부 파일 업로드 */
+	@SuppressWarnings("deprecation")
 	@PostMapping(value = "/uploadAjaxAction", produces = MediaType.APPLICATION_JSON_UTF8_VALUE)
 	public ResponseEntity<List<AttachImageDTO>> uploadAjaxActionPOST(MultipartFile[] uploadFile) {
 
@@ -167,7 +168,7 @@ public class AdminController {
 				return new ResponseEntity<>(list, HttpStatus.BAD_REQUEST);
 			}
 		}
-		String uploadFolder = "/home/lwk/image/";
+		String uploadFolder = "C:\\upload\\";
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		Date date = new Date();
 		String str = sdf.format(date);
@@ -231,7 +232,7 @@ public class AdminController {
 	public ResponseEntity<byte[]> getImage(String fileName) {
 		logger.info("getImage()......." + fileName);
 
-		File file = new File("/home/lwk/image/" + fileName);
+		File file = new File("C:\\upload\\" + fileName);
 		ResponseEntity<byte[]> result = null;
 
 		try {
@@ -257,7 +258,7 @@ public class AdminController {
 		File file = null;
 		try {
 			/* 썸네일 파일 삭제 */
-			file = new File("/home/lwk/image/" + URLDecoder.decode(fileName, "UTF-8"));
+			file = new File("C:\\upload\\" + URLDecoder.decode(fileName, "UTF-8"));
 
 			file.delete();
 
@@ -353,9 +354,21 @@ public class AdminController {
 		
 		model.addAttribute("pageMaker", new PageDTO(cri, shipService.goodsGetTotal(cri)));
 		
+ 
 		
 		return "/search";
 		
+		
+	
+		
+	}
+
+	public MemberMapper getMapper() {
+		return mapper;
+	}
+
+	public void setMapper(MemberMapper mapper) {
+		this.mapper = mapper;
 	}
 	
 	

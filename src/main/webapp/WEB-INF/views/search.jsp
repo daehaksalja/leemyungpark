@@ -159,13 +159,14 @@
 	                   		</li>
 	                   	</c:if>
 					</ul>
-				</div>
+				</div>	
 				
 				<form id="moveForm" action="/search" method="get" >
 					<input type="hidden" name="pageNum" value="${pageMaker.cri.pageNum}">
 					<input type="hidden" name="amount" value="${pageMaker.cri.amount}">
 					<input type="hidden" name="keyword" value="${pageMaker.cri.keyword}">
-					<input type="hidden" name="type" value="${pageMaker.cri.type}">
+		
+
 				</form>
 			</c:if>
 			<!-- 게시물 x -->
@@ -193,14 +194,9 @@ $(".pageMaker_btn a").on("click", function(e){
 	
 });
 
-$(document).ready(function(){
-	// 검색 타입 selected
-	const selectedType = '<c:out value="${pageMaker.cri.type}"/>';
-	if(selectedType != ""){
-		$("select[name='type']").val(selectedType).attr("selected", "selected");	
-	}
-	
-});
+
+
+
 
 
 </script>

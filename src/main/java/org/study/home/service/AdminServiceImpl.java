@@ -8,7 +8,6 @@ import org.springframework.transaction.annotation.Transactional;
 import org.study.home.mapper.AdminMapper;
 import org.study.home.model.Criteria;
 import org.study.home.model.ShipDTO;
-import lombok.extern.log4j.Log4j;
 
 @Service
 
