@@ -5,8 +5,10 @@
 }
 
 #result_card img{
-      max-width: 300px;
-       height: auto;
+	
+     max-width: 400px;
+	padding: 5px;
+	margin-top: 10px;
        display: flex;
        padding: 5px;
        margin-top: 80px; 
@@ -18,8 +20,23 @@
 	margin-top: 140px; 
 	}
 
+#result_card {
+	position: absolute;
+}
 
-
+.imgDeleteBtn {
+	position: absolute;
+	background-color: red;
+	color: wheat;
+	margin-top: -280px;
+	margin-left: 380px;
+	width: 30px;
+	height: 30px;
+	border-radius: 50%;
+	text-align: center;
+	border: none;
+	cursor: pointer;
+}
 
 .btn_section{
 	display: flex;

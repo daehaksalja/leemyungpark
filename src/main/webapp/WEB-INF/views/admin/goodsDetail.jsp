@@ -18,14 +18,15 @@
 	z-index: -1000;
 	overflow: hidden;
 }
-#result_card img{
-		max-width: 400px;
-	    height: auto;
-	    display: block;
-	    padding: 5px;
-	    margin-top: 10px;
-	    margin: auto;	
-	}
+
+#result_card img {
+	max-width: 400px;
+	height: auto;
+	display: block;
+	padding: 5px;
+	margin-top: 10px;
+	margin: auto;
+}
 </style>
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-3.4.1.js"
@@ -33,7 +34,7 @@
 	crossorigin="anonymous"></script>
 </head>
 
-<!-- <style>
+ <style>
 /* 깔끔하게 스크롤바싹없애는 */
 html, body, div, video {
 	margin: 0;
@@ -45,7 +46,7 @@ body {
 	overflow: hidden;
 	background-color: black;
 }
-</style> -->
+</style> 
 
 <link rel="stylesheet" href="../../../resources/css/goodsDetail.css">
 <body>
@@ -66,89 +67,96 @@ body {
 
 		<div class="container">
 
-					<div class="admin_content_main">
-
-				<div class="inputText1">
-					<label class="menuText">ship 제목</label>
-				</div>
-				<div class="inputbox">
-					<input class="inputTag" name="shipName"
-						value="<c:out value="${goodsInfo.shipName}"/>" disabled>
-				</div>
-
-
-				<div class="inputText2">
-					<label class="menuText">ship 가격</label>
-				</div>
-				<div class="inputbox">
-					<input class="inputTag" name="shipPrice"
-						value="<c:out value="${goodsInfo.shipPrice}"/>" disabled>
-				</div>
+			<div class="admin_content_main">
+				<div class="neon_effect">
+					<div class="inputText1">
+						<label class="menuText">ship 제목</label>
+					</div>
+					<div class="inputbox">
+						<input class="inputTag" name="shipName"
+							value="<c:out value="${goodsInfo.shipName}"/>" disabled>
+					</div>
 
 
+					<div class="inputText2">
+						<label class="menuText">ship 가격</label>
+					</div>
+					<div class="inputbox">
+						<input class="inputTag" name="shipPrice"
+							value="<c:out value="${goodsInfo.shipPrice}"/>" disabled>
+					</div>
 
-				<div class="inputText3">
-					<label class="menuText">ship 재고</label>
-				</div>
-				<div class="inputbox">
-					<input class="inputTag" name="shipStock"
-						value="<c:out value="${goodsInfo.shipStock}"/>" disabled>
-				</div>
 
 
+					<div class="inputText3">
+						<label class="menuText">ship 재고</label>
+					</div>
+					<div class="inputbox">
+						<input class="inputTag" name="shipStock"
+							value="<c:out value="${goodsInfo.shipStock}"/>" disabled>
+					</div>
 
 
 
 
-				<div class="inputText5">
-					<label class="menuText">등록 날짜</label>
-				</div>
-				<div class="inputbox">
-					<input class="inputTag"
-						value="<fmt:formatDate value='${goodsInfo.regDate}' pattern='yyyy-MM-dd'/>"
-						disabled>
-				</div>
+
+
+					<div class="inputText5">
+						<label class="menuText">등록 날짜</label>
+					</div>
+					<div class="inputbox">
+						<input class="inputTag"
+							value="<fmt:formatDate value='${goodsInfo.regDate}' pattern='yyyy-MM-dd'/>"
+							disabled>
+					</div>
 
 
 
-				<div class="inputText6">
-					<label class="menuText">최근 수정 날짜</label>
-				</div>
-				<div class="inputbox">
-					<input class="inputTag"
-						value="<fmt:formatDate value='${goodsInfo.updateDate}' pattern='yyyy-MM-dd'/>"
-						disabled>
-				</div>
+					<div class="inputText6">
+						<label class="menuText">최근 수정 날짜</label>
+					</div>
+					<div class="inputbox">
+						<input class="inputTag"
+							value="<fmt:formatDate value='${goodsInfo.updateDate}' pattern='yyyy-MM-dd'/>"
+							disabled>
+					</div>
 
 
-				<div class="inputText4">
+					<div class="inputText4">
 
-					<label class="menuText">ship 소개</label>
-				</div>
-				<div class="areaBox">
-					<textarea class="inputTagLarge" name="shipIntro"
-						id="shipIntro_textarea" disabled>${goodsInfo.shipIntro}</textarea>
+						<label class="menuText">ship 소개</label>
+					</div>
+					<div class="areaBox">
+						<textarea class="inputTagLarge" name="shipIntro"
+							id="shipIntro_textarea" disabled>${goodsInfo.shipIntro}</textarea>
+					</div>
 				</div>
 
 			</div>
-
 
 
 
 
 			<div class="btn_box">
+				<button id="modifyBtn" class="btn">수정</button>
+				<!-- </div>
+			<div class="btn_box2"> -->
 				<button id="cancelBtn" class="btn">상품 목록</button>
-				<button id="modifyBtn" class="btn enroll_btn">수정</button>
 			</div>
+				
+				
+				
+				<a href="/adminMenu"><button  id="cancelBtn" class="goHomeBtn"> 관리자 메뉴로 돌아가기 </button></a>
+			<!-- <button id="cancelBtn" class="btn">관리자 메뉴로 돌아가기</button> -->
+
+			<!-- 
+			<div class="neon_effect">
 			
-			
-			<!-- <div class="neon_effect">
-				<button id="cancelBtn" class="mainBtn1">
 					<div class="back">
-						<a href="/adminMenu/goodsManage" class="btn btn--1"><p
-								class="btnText">상품 목록</p></a>
+						<a href="/adminMenu" class="btn btn--1"><p
+								class="btnText">관리자 메뉴로 돌아가기</p></a>
 					</div>
-				</button>
+		
 			</div>
 			<div class="neon_effect">
 				<button id="cancelBtn" class="mainBtn2">
@@ -158,9 +166,9 @@ body {
 					</div>
 				</button>
 			</div> -->
-			
-			
-			
+
+
+
 		</div>
 
 		<div class="imgCont">
@@ -184,7 +192,9 @@ body {
 
 
 	<script type="text/javascript">
-		$(document).ready(function() {
+		$(document)
+				.ready(
+						function() {
 							/* 이미지 정보 호출 */
 							let shipId = '<c:out value="${goodsInfo.shipId}"/>';
 							let uploadReslut = $("#uploadReslut");

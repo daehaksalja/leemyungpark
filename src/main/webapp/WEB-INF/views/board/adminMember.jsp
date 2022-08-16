@@ -71,7 +71,7 @@
 		<div class="Page">
 			<div class="neon_effect">
 				<div class="exitBtnBox">
-					<a href="/" class=""><p class="exitBtn">홈으로 가기</p></a>
+					<a href="/adminMenu" class=""><p class="exitBtn">홈으로 가기</p></a>
 				</div>
 
 
