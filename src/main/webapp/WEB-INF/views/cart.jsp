@@ -166,6 +166,7 @@
 									<input type="hidden" class="individual_shipPrice_input" value="${ci.shipPrice}">
 									<input type="hidden" class="individual_shipCount_input" value="${ci.shipCount}">
 									<input type="hidden" class="individual_shipPrice_shipCount_input" value="${ci.shipPrice * ci.shipCount}">
+									<input type="hidden" class="individual_shipId_input" value="${ci.shipId}">
 									</td>
 									
 									<td class="td_width_2111111111">
@@ -185,7 +186,8 @@
 										</div> <a class="quantity_modify_btn" data-cartid="${ci.cartId}">변경</a>
 									</td>
 
-									<td class="td_width_4 table_text_align_center delete_btn"><button>삭제</button></td>
+									<td class="td_width_4 table_text_align_center delete_btn">
+									<button id="delete_btn" data-cartid="${ci.cartId}">삭제</button></td>
 								</tr>
 							</c:forEach>
 						</tbody>
@@ -245,7 +247,7 @@
 				</div>
 				<!-- 구매 버튼 영역 -->
 				<div class="content_btn_section">
-					<a>주문하기</a>
+					<a class="order_btn">주문하기</a>
 				</div>
 				
 				
@@ -256,11 +258,23 @@
 				<input type="hidden" name="user_id" value="${member.user_id}">
 			</form>
 
+			<!-- 삭제 form -->
+			<form action="/cart/delete" method="post" id="quantity_delete_form">
+				<input type="hidden" name="cartId" id="delete_cartId">
+				<input type="hidden" name="user_id" value="${member.user_id}">
+			</form>	
+			
+			
+			<!-- 주문 form -->
+			<form action="/order/${member.user_id}" method="get" class="order_form">
+
+			</form>
+			
 			</div>
 		</div>
 	</div>
 
-	<script type="text/javascript">
+	<script>
 $(document).ready(function(){
 	setTotalInfo();
 	/* 이미지 삽입 */
@@ -359,6 +373,43 @@ $(".quantity_modify_btn").on("click", function(){
 	$(".update_cartId").val(cartId);
 	$(".update_shipCount").val(shipCount);
 	$(".quantity_update_form").submit();
+	
+});
+
+/* 장바구니 삭제 버튼 */
+$("#delete_btn").on("click", function(e){
+	e.preventDefault();
+	const cartId = $(this).data("cartid");
+	$("#delete_cartId").val(cartId);
+	$("#quantity_delete_form").submit();
+});
+
+/* 주문 페이지 이동 */	
+$(".order_btn").on("click", function(){
+	
+	let form_contents ='';
+	let orderNumber = 0;
+	
+	$(".cart_info_td").each(function(index, element){
+		
+		if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
+			
+			let shipId = $(element).find(".individual_shipId_input").val();
+			let shipCount = $(element).find(".individual_shipCount_input").val();
+			
+			let shipId_input = "<input name='orders[" + orderNumber + "].shipId' type='hidden' value='" + shipId + "'>";
+			form_contents += shipId_input;
+			
+			let shipCount_input = "<input name='orders[" + orderNumber + "].shipCount' type='hidden' value='" + shipCount + "'>";
+			form_contents += shipCount_input;
+			
+			orderNumber += 1;
+			
+		}
+	});	
+
+	$(".order_form").html(form_contents);
+	$(".order_form").submit();
 	
 });
 </script>

@@ -16,11 +16,15 @@ public class AdminInterceptor extends HandlerInterceptorAdapter {
 
       System.out.println("dfdfsdfsdf" + member);
       if (member == null) {
+    	  session.invalidate();
          res.sendRedirect("redirect:/");
+         
          return false;
       }
       if (member.getAdminCk() != 1) {
+    	  session.invalidate();
          res.sendRedirect("/");
+        
          return false;
       }
 

@@ -32,5 +32,8 @@ public interface MemberMapper {
 
 	public String getRealisAdmin(String user_id);
 	
+	
+	/* 주문자 주소 정보 */
+	public MemberDTO getMemberInfo(String user_id);
 
 }

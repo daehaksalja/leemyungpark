@@ -86,6 +86,12 @@
 				리뷰
 			</div>
 			
+			<!-- 주문 form -->
+			<form action="/order/${member.user_id}" method="get" class="order_form">
+				<input type="hidden" name="orders[0].shipId" value="${goodsInfo.shipId}">
+				<input type="hidden" name="orders[0].shipCount" value="">
+			</form>
+			
 		</div>
 	</div>	
 </div> 
@@ -155,6 +161,13 @@ function cartAlert(result){
 			window.location.href = '/moveLogin';
 		}
 	}
+	
+/* 바로구매 버튼 */
+$(".btn_buy").on("click", function(){
+	let shipCount = $(".quantity_input").val();
+	$(".order_form").find("input[name='orders[0].shipCount']").val(shipCount);
+	$(".order_form").submit();
+});
 </script>
 </body>
 </html>
