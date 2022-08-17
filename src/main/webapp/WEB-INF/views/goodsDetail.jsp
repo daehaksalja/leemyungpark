@@ -13,6 +13,7 @@
    <link rel="stylesheet" href="../../../resources/css/goodsDetail2.css">
 </head>
 <body>
+<a href="/cart/${member.user_id}">장바구니</a>
  <div class="wrapper">
 	<div class="wrap">
 			<div class="search_area">
@@ -111,8 +112,15 @@ $(document).ready(function(){
 
 	
 });	
+//서버로 전송할 데이터
+const form = {
+		user_id : '${member.user_id}',
+		shipId : '${goodsInfo.shipId}',
+		shipCount : $(".quantity_input").val()
+}
 // 수량 버튼 조작
 let quantity = $(".quantity_input").val();
+
 $(".plus_btn").on("click", function(){
 	$(".quantity_input").val(++quantity);
 });
@@ -121,15 +129,10 @@ $(".minus_btn").on("click", function(){
 		$(".quantity_input").val(--quantity);	
 	}
 });
-//서버로 전송할 데이터
-const form = {
-		user_id : '${member.user_id}',
-		shipId : '${goodsInfo.shipId}',
-		shipCount : $(".quantity_input").val()
-}
+
 //장바구니 추가 버튼
 $(".btn_cart").on("click", function(e){
-		form.bookCount = $(".quantity_input").val();
+		form.shipCount = $(".quantity_input").val();
 		$.ajax({
 			url: '/cart/add',
 			type: 'POST',
@@ -149,6 +152,7 @@ function cartAlert(result){
 			alert("장바구니에 이미 추가되어져 있습니다.");
 		} else if(result == '5'){
 			alert("로그인이 필요합니다.");	
+			window.location.href = '/moveLogin';
 		}
 	}
 </script>

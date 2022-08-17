@@ -12,6 +12,16 @@ public class CartDTO {
     private String shipName;
     
     private int shipPrice;
+    
+    private int totalPrice;
+
+	public int getTotalPrice() {
+		return totalPrice;
+	}
+
+	public void setTotalPrice(int totalPrice) {
+		this.totalPrice = totalPrice;
+	}
 
 	public int getCartId() {
 		return cartId;

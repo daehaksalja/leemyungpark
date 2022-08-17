@@ -5,6 +5,9 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.study.home.model.CartDTO;
@@ -34,5 +37,15 @@ public class CartController {
 		System.out.println("addCartPost==========================2");
 		
 		return result + "";
+	}
+	
+	
+	@GetMapping("/cart/{user_id}")
+	public String cartPageGET(@PathVariable("user_id") String user_id, Model model) {
+		System.out.println("cartPageGET==========================1"+ user_id);
+		
+		model.addAttribute("cartInfo", cartService.getCartList(user_id));
+	
+		return "/cart";
 	}
 }

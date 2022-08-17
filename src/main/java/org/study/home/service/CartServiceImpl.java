@@ -1,5 +1,7 @@
 package org.study.home.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.study.home.mapper.CartMapper;
@@ -26,4 +28,18 @@ public class CartServiceImpl implements CartService{
 					return 0;
 				}
 		}
+
+	@Override
+	public List<CartDTO> getCartList(String user_id) {
+
+		List<CartDTO> cart = cartMapper.getCart(user_id);
+		
+//		for(CartDTO dto : cart) {
+//			
+//		}
+//		
+		return cart;
+	}
+	
+	
 }
