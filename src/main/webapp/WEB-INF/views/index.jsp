@@ -85,6 +85,16 @@
 			</span> <span class="frame-btn__solid"></span> <span class="frame-btn__text">LOGIN</span>
 			</a>
 		</div>
+		<div class="search_area">
+					<div class="search_wrap">
+                		<form id="searchForm" action="/search" method="get">
+                			<div class="search_input">
+                				<input type="text" name="keyword">
+                    			<button class='btn search_btn'>검 색</button>                				
+                			</div>
+                		</form>
+                	</div>
+				</div>
 		<video class="mainVideo"
 			src="../../resources/css/nebula_-_25168 (Original).mp4" muted
 			autoplay loop></video>
