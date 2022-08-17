@@ -48,4 +48,13 @@ public class CartController {
 	
 		return "/cart";
 	}
+	/* 장바구니 수량 수정 */
+	@PostMapping("/cart/update")
+	public String updateCartPOST(CartDTO cart) {
+		
+			cartService.modifyCount(cart);
+			System.out.println("contoller 통과");
+		return "redirect:/cart/" + cart.getUser_id();
+	}
+	
 }

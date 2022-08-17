@@ -182,7 +182,7 @@
 												class="quantity_input">
 											<button class="quantity_btn plus_btn">+</button>
 											<button class="quantity_btn minus_btn">-</button>
-										</div> <a class="quantity_modify_btn">변경</a>
+										</div> <a class="quantity_modify_btn" data-cartid="${ci.cartId}">변경</a>
 									</td>
 
 									<td class="td_width_4 table_text_align_center delete_btn"><button>삭제</button></td>
@@ -247,7 +247,14 @@
 				<div class="content_btn_section">
 					<a>주문하기</a>
 				</div>
-
+				
+				
+					<!-- 수량 조정 form -->
+			<form action="/cart/update" method="post" class="quantity_update_form">
+				<input type="hidden" name="cartId" class="update_cartId">
+				<input type="hidden" name="shipCount" class="update_shipCount">
+				<input type="hidden" name="user_id" value="${member.user_id}">
+			</form>
 
 			</div>
 		</div>
@@ -333,9 +340,27 @@ $(".delivery_price").text(deliveryPrice);
 $(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
 }
 
+/* 수량버튼 */
+$(".plus_btn").on("click", function(){
+	let quantity = $(this).parent("div").find("input").val();
+	$(this).parent("div").find("input").val(++quantity);
+});
+$(".minus_btn").on("click", function(){
+	let quantity = $(this).parent("div").find("input").val();
+	if(quantity > 1){
+		$(this).parent("div").find("input").val(--quantity);		
+	}
+});
 
-
-
+/* 수량 수정 버튼 */
+$(".quantity_modify_btn").on("click", function(){
+	let cartId = $(this).data("cartid");
+	let shipCount = $(this).parent("td").find("input").val();
+	$(".update_cartId").val(cartId);
+	$(".update_shipCount").val(shipCount);
+	$(".quantity_update_form").submit();
+	
+});
 </script>
 
 </body>

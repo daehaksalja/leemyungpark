@@ -125,7 +125,7 @@ body {
 
 				<div class="form_section">
 					<div class="form_section_content">
-						<input type="file" id="fileItem" name='uploadFile' class="btn">
+						<input type="file" id="fileItem" name='uploadFile' class="imageBtn">
 						<div id="uploadResult"></div>
 					</div>
 				</div>
@@ -153,10 +153,14 @@ body {
 	</form>
 
 
-
+<a href="/adminMenu"><button  id="cancelBtn" class="goHomeBtn"> 관리자 메뉴로 돌아가기 </button></a>
 
 
 	<script type="text/javascript">
+	
+	
+	
+	
 		$(document)
 				.ready(
 						function() {
