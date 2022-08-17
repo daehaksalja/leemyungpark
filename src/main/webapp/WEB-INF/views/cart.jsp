@@ -74,7 +74,7 @@
 	padding: 0 10px;
 }
 
-.pageMaker_btn a:link {
+.pageMaker_btn a:link {class="td_width_2"
 	color: black;
 }
 
@@ -96,14 +96,16 @@
 
 /* 상품 이미지 관련 */
 .image_wrap {
-	width: 130%;
-	height: 130%;
+	width:150px ;
+	
+	
 }
 
 .image_wrap img {
-	max-width: 130%;
+	max-width: 100%;
 	height: auto;
 	display: block;
+	border-radius: 10%
 }
 </style>
 </head>
@@ -135,16 +137,22 @@
 				<!-- 장바구니 가격 합계 -->
 				<!-- cartInfo -->
 				<div class="content_totalCount_section">
-
+					
+							<!-- 체크박스 전체 여부 -->
+					<div class="all_check_input_div">
+						<input type="checkbox" class="all_check_input input_size_20" checked="checked"><span class="all_chcek_span">전체선택</span>
+					</div>
 					<table class="subject_table">
 						<caption>표 제목 부분</caption>
 						<tbody>
 
 							<tr>
+								<th class="td_width_1"></th>
+								<th class="td_width_2"></th>
 								<th class="td_width_3">상품명</th>
 								<th class="td_width_4">가격</th>
-								<th class="td_width_4">수량</th>
-								<th class="td_width_4">삭제</th>
+								<th class="td_width_5">수량</th>
+								<th class="td_width_6">삭제</th>
 							</tr>
 						</tbody>
 					</table>
@@ -154,13 +162,18 @@
 							<c:forEach items="${cartInfo}" var="ci">
 								<tr>
 									<td class="td_width_1 cart_info_td">
+									<input type="checkbox" class="individual_cart_checkbox input_size_20" checked="checked">
 									<input type="hidden" class="individual_shipPrice_input" value="${ci.shipPrice}">
 									<input type="hidden" class="individual_shipCount_input" value="${ci.shipCount}">
 									<input type="hidden" class="individual_shipPrice_shipCount_input" value="${ci.shipPrice * ci.shipCount}">
 									</td>
 									
-									<td class="td_width_2"></td>
-									<td class="td_width_3">${ci.shipName}</td>
+									<td class="td_width_2111111111">
+										<div class="image_wrap" data-shipid="${ci.imageList[0].shipId}" data-path="${ci.imageList[0].uploadPath}" data-uuid="${ci.imageList[0].uuid}" data-filename="${ci.imageList[0].fileName}">
+											<img>
+										</div>
+									</td>
+									<td class="td_width_3"> <span class="shipNameSpanc"> ${ci.shipName}</span></td>
 									<td class="td_width_4 price_td"><span>정가 : <fmt:formatNumber
 												value="${ci.shipPrice}" pattern="#,### 원" /></span> <br></td>
 									<td class="td_width_4 table_text_align_center">
@@ -242,46 +255,83 @@
 
 	<script type="text/javascript">
 $(document).ready(function(){
+	setTotalInfo();
+	/* 이미지 삽입 */
+	$(".image_wrap").each(function(i, obj){
+			const bobj = $(obj);
+		
+					if(bobj.data("shipid")){
+						const uploadPath = bobj.data("path");
+						const uuid = bobj.data("uuid");
+						const fileName = bobj.data("filename");
+			
+						const fileCallPath = encodeURIComponent(uploadPath + "/s_" + uuid + "_" + fileName);
+			
+						$(this).find("img").attr('src', '/display?fileName=' + fileCallPath);
+					} else {
+						$(this).find("img").attr('src', '/resources/image/goodsNoImage.png');
+					}	    
+	
+			});
+});
+
+/* 체크여부에따른 종합 정보 변화 */
+$(".individual_cart_checkbox").on("change", function(){
+	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
+	setTotalInfo($(".cart_info_td"));
+});
+
+/* 체크박스 전체 선택 */
+$(".all_check_input").on("click", function(){
+	/* 체크박스 체크/해제 */
+	if($(".all_check_input").prop("checked")){
+		$(".individual_cart_checkbox").attr("checked", true);
+	} else{
+		$(".individual_cart_checkbox").attr("checked", false);
+	}
+	/* 총 주문 정보 세팅(배송비, 총 가격, 마일리지, 물품 수, 종류) */
+	setTotalInfo($(".cart_info_td"));	
+});
+
+function setTotalInfo(){
 	let totalPrice = 0;				// 총 가격
 	let totalCount = 0;	
 	let deliveryPrice = 0;			// 배송비// 총 갯수
 	let totalKind = 0;	
 	let finalTotalPrice = 0; 
-	$(".cart_info_td").each(function(index, element){
-		
+$(".cart_info_td").each(function(index, element){
+	if($(element).find(".individual_cart_checkbox").is(":checked") === true){	//체크여부
 		// 총 가격
 		totalPrice += parseInt($(element).find(".individual_shipPrice_shipCount_input").val());
 		// 총 갯수
 		totalCount += parseInt($(element).find(".individual_shipCount_input").val());
 		// 총 종류
 		totalKind += 1;
-	});
-		
-		/* 배송비 결정 */
-		if(totalPrice >= 30000){
-			deliveryPrice = 10000;
-		} else if(totalPrice == 0){
-			deliveryPrice = 0;
-		} else {
-			deliveryPrice = 50000;	
-		}	
-
-		/* 최종 가격 */
-		finalTotalPrice = totalPrice + deliveryPrice;
-		/* 값 삽입 */
-		// 총 가격
-		$(".totalPrice_span").text(totalPrice.toLocaleString());
-		// 총 갯수
-		$(".totalCount_span").text(totalCount);
-		// 총 종류
-		$(".totalKind_span").text(totalKind);
-		// 배송비
-		$(".delivery_price").text(deliveryPrice);	
-		// 최종 가격(총 가격 + 배송비)
-		$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
-	
+	}
 });
+/* 배송비 결정 */
+if(totalPrice >= 30000){
+	deliveryPrice = 10000;
+} else if(totalPrice == 0){
+	deliveryPrice = 0;
+} else {
+	deliveryPrice = 50000;	
+}	
 
+/* 최종 가격 */
+finalTotalPrice = totalPrice + deliveryPrice;
+/* 값 삽입 */
+// 총 가격
+$(".totalPrice_span").text(totalPrice.toLocaleString());
+// 총 갯수
+$(".totalCount_span").text(totalCount);
+// 총 종류
+$(".totalKind_span").text(totalKind);
+// 배송비
+$(".delivery_price").text(deliveryPrice);	
+// 최종 가격(총 가격 + 배송비)
+$(".finalTotalPrice_span").text(finalTotalPrice.toLocaleString());
+}
 
 
 

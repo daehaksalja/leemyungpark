@@ -1,5 +1,7 @@
 package org.study.home.model;
 
+import java.util.List;
+
 public class CartDTO {
     private int cartId;
     
@@ -14,6 +16,18 @@ public class CartDTO {
     private int shipPrice;
     
     private int totalPrice;
+    
+	/* 상품 이미지 */
+	private List<AttachImageDTO> imageList;
+    
+
+	public List<AttachImageDTO> getImageList() {
+		return imageList;
+	}
+
+	public void setImageList(List<AttachImageDTO> imageList) {
+		this.imageList = imageList;
+	}
 
 	public int getTotalPrice() {
 		return totalPrice;
@@ -73,7 +87,11 @@ public class CartDTO {
 
 	@Override
 	public String toString() {
-		return "CartDTO [cartId=" + this.cartId + ", user_id=" + this.user_id + ", shipId=" + this.shipId + ", shipCount=" + this.shipCount + ", shipName=" + this.shipName + ", shipPrice=" + this.shipPrice + "]";
+		return "CartDTO [cartId=" + cartId + ", user_id=" + user_id + ", shipId=" + shipId + ", shipCount=" + shipCount
+				+ ", shipName=" + shipName + ", shipPrice=" + shipPrice + ", totalPrice=" + totalPrice + ", imageList="
+				+ imageList + "]";
 	}
+
+	
     
 }

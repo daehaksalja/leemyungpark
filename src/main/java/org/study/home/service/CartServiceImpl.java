@@ -4,13 +4,18 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.study.home.mapper.AttachMapper;
 import org.study.home.mapper.CartMapper;
+import org.study.home.model.AttachImageDTO;
 import org.study.home.model.CartDTO;
 
 @Service
 public class CartServiceImpl implements CartService{
 	@Autowired
 	private CartMapper cartMapper;
+	
+	@Autowired
+	private AttachMapper attachMapper;
 	
 	@Override
 	public int addCart(CartDTO cart) {
@@ -34,10 +39,17 @@ public class CartServiceImpl implements CartService{
 
 		List<CartDTO> cart = cartMapper.getCart(user_id);
 		
-//		for(CartDTO dto : cart) {
-//			
-//		}
-//		
+		for(CartDTO dto : cart) {
+		
+			
+			/* 이미지 정보 얻기 */
+			int shipId = dto.getShipId();
+			
+			List<AttachImageDTO> imageList = attachMapper.getAttachList(shipId);
+			
+			dto.setImageList(imageList);
+		}
+	
 		return cart;
 	}
 	
