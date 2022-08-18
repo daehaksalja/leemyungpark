@@ -52,6 +52,7 @@ body {
 </video>
 
 
+	<a href="/"><button   class="goHomeBtn"> SPACE SHIP </button></a>
 
 
 <div class="neon_effect">
